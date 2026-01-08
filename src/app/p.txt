@@ -1,0 +1,599 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import {
+  Menu,
+  X,
+  Shield,
+  Lock,
+  Share2,
+  BarChart3,
+  ArrowRight,
+  Zap,
+  Users,
+  Star,
+  CheckCircle,
+  Globe,
+  Smartphone,
+  TrendingUp,
+  Bell,
+  Eye,
+  Clock,
+  Award,
+  Fingerprint,
+  Database,
+  RefreshCw,
+  Layers,
+  Target,
+  Briefcase,
+  CreditCard,
+  Building,
+  FileText,
+  Phone,
+  Mail,
+} from "lucide-react";
+
+export default function HomePage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const features = [
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: "Secure BVN Verification",
+      description: "Verify your identity securely using your BVN. All data is encrypted and protected with bank-grade security.",
+    },
+    {
+      icon: <Layers className="w-8 h-8" />,
+      title: "Multiple Identity Aggregation",
+      description: "Currently supporting bank accounts with plans to include government IDs, licenses, and more identities.",
+    },
+    {
+      icon: <Share2 className="w-8 h-8" />,
+      title: "Easy Sharing",
+      description: "Share your OneID with a unique 10-digit code. Control what information others can view.",
+    },
+    {
+      icon: <BarChart3 className="w-8 h-8" />,
+      title: "Real-time Management",
+      description: "Add, edit, delete, or toggle accounts with instant updates and complete control over your data.",
+    },
+    {
+      icon: <Eye className="w-8 h-8" />,
+      title: "Privacy Controls",
+      description: "Toggle visibility of individual accounts. You decide what to share and when to share it.",
+    },
+    {
+      icon: <Lock className="w-8 h-8" />,
+      title: "End-to-End Encryption",
+      description: "Your data is protected with military-grade encryption. We never store sensitive information.",
+    },
+  ];
+
+  const identityTypes = [
+    {
+      icon: <Building className="w-6 h-6" />,
+      title: "Bank Accounts",
+      description: "All Nigerian banks",
+      status: "Available Now",
+      color: "text-orange-400",
+    },
+    {
+      icon: <FileText className="w-6 h-6" />,
+      title: "Government IDs",
+      description: "NIN, Driver's License, Passport",
+      status: "Coming Soon",
+      color: "text-gray-400",
+    },
+    {
+      icon: <Briefcase className="w-6 h-6" />,
+      title: "Professional IDs",
+      description: "Work credentials & certificates",
+      status: "Coming Soon",
+      color: "text-gray-400",
+    },
+    {
+      icon: <CreditCard className="w-6 h-6" />,
+      title: "Payment Cards",
+      description: "Debit & credit cards",
+      status: "Coming Soon",
+      color: "text-gray-400",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: "Chioma Okafor",
+      role: "Freelancer",
+      content: "OneID made managing my multiple bank accounts so simple. The interface is intuitive and secure!",
+      rating: 5,
+    },
+    {
+      name: "Tunde Adebayo",
+      role: "Business Owner",
+      content: "Finally a way to aggregate all my accounts safely. The BVN verification gives me peace of mind.",
+      rating: 5,
+    },
+    {
+      name: "Amara Ikechukwu",
+      role: "SME Entrepreneur",
+      content: "The sharing feature is perfect for my business needs. Highly recommended for Nigerian users!",
+      rating: 5,
+    },
+    {
+      name: "Ibrahim Musa",
+      role: "Real Estate Agent",
+      content: "Managing accounts from different banks was chaos. OneID brought everything together seamlessly!",
+      rating: 5,
+    },
+  ];
+
+  const stats = [
+    { number: "100%", label: "Secure & Verified" },
+    { number: "All Banks", label: "Supported" },
+    { number: "10-Digit", label: "OneID Code" },
+    { number: "24/7", label: "Available" },
+  ];
+
+  const useCases = [
+    {
+      icon: <Briefcase className="w-6 h-6" />,
+      title: "Business Verification",
+      description: "Verify clients and partners quickly with their OneID code",
+    },
+    {
+      icon: <Users className="w-6 h-6" />,
+      title: "Team Management",
+      description: "Collect team members' account information securely",
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6" />,
+      title: "Financial Planning",
+      description: "Get a complete view of all your banking relationships",
+    },
+    {
+      icon: <Target className="w-6 h-6" />,
+      title: "KYC Compliance",
+      description: "Simplify identity verification for businesses",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "What is OneID?",
+      answer: "OneID is an identity aggregation platform that lets you compile multiple identities into one secure profile. We're starting with bank accounts, allowing you to link all your Nigerian bank accounts and share them with a single 10-digit code.",
+    },
+    {
+      question: "Is my information secure?",
+      answer: "Yes. We use bank-grade encryption and BVN verification. Your data is protected with the same security standards used by financial institutions. We never store your BVN or sensitive banking credentials.",
+    },
+    {
+      question: "What can I add to my OneID?",
+      answer: "Currently, you can add bank accounts from all major Nigerian banks. We're working on expanding to include government IDs (NIN, passport), professional credentials, and other identity documents.",
+    },
+    {
+      question: "How does sharing work?",
+      answer: "When you create your OneID, you get a unique 10-digit code. You can share this code with others, and they can view the accounts you've made visible. You have full control over what information is shared.",
+    },
+    {
+      question: "Can I hide specific accounts?",
+      answer: "Yes! You can toggle the visibility of each account individually. Only accounts marked as visible will be shown when someone looks up your OneID.",
+    },
+    {
+      question: "Is there a fee?",
+      answer: "OneID is currently free to use. We may introduce premium features in the future, but core functionality will remain free.",
+    },
+  ];
+
+  const securityFeatures = [
+    "256-bit encryption",
+    "BVN verification",
+    "No password storage",
+    "Secure data transmission",
+    "Regular security audits",
+    "GDPR compliant",
+  ];
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Navigation */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md border-b border-gray-800' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                <span className="text-xl font-bold text-white">1ID</span>
+              </div>
+              <span className="text-xl font-bold">OneID</span>
+            </div>
+
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#home" className="hover:text-orange-400 transition-colors">Home</a>
+              <a href="#features" className="hover:text-orange-400 transition-colors">Features</a>
+              <a href="#use-cases" className="hover:text-orange-400 transition-colors">Use Cases</a>
+              <a href="#about" className="hover:text-orange-400 transition-colors">About</a>
+              <a href="#faq" className="hover:text-orange-400 transition-colors">FAQ</a>
+              <button className="text-gray-300 hover:text-white transition-colors">Login</button>
+              <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-2 rounded-lg font-medium transition-all">
+                Get Started
+              </button>
+            </div>
+
+            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {isMenuOpen && (
+            <div className="md:hidden py-4 space-y-4 border-t border-gray-800">
+              <a href="#home" className="block hover:text-orange-400 transition-colors">Home</a>
+              <a href="#features" className="block hover:text-orange-400 transition-colors">Features</a>
+              <a href="#use-cases" className="block hover:text-orange-400 transition-colors">Use Cases</a>
+              <a href="#faq" className="block hover:text-orange-400 transition-colors">FAQ</a>
+              <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-2 rounded-lg font-medium">
+                Get Started
+              </button>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="relative py-20 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-900/10 to-transparent"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-2 mb-6">
+              <Layers className="w-4 h-4 text-orange-400" />
+              <span className="text-sm text-orange-300">Identity Aggregation Platform</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+              One Identity For
+              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                {" "}All Your Accounts
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+              Aggregate multiple identities into one secure profile. Starting with bank accounts from all Nigerian banks, with more identity types coming soon.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 flex items-center space-x-2">
+                <span>Create Your OneID</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+              <button className="border border-gray-600 hover:border-orange-400 px-8 py-4 rounded-lg font-semibold text-lg transition-all">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-gray-900/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold text-orange-400 mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-300">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Identity Types Section */}
+      <section className="py-20 bg-gradient-to-b from-transparent to-gray-900/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              What You Can Add to
+              <span className="text-orange-400"> Your OneID</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              We're building a comprehensive identity platform. Here's what's available now and what's coming next.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {identityTypes.map((type, index) => (
+              <div key={index} className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 hover:border-orange-500/50 transition-all">
+                <div className={`${type.color} mb-4`}>{type.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{type.title}</h3>
+                <p className="text-gray-400 text-sm mb-4">{type.description}</p>
+                <span className={`text-xs px-3 py-1 rounded-full ${type.status === 'Available Now' ? 'bg-orange-500/20 text-orange-400' : 'bg-gray-800 text-gray-500'}`}>
+                  {type.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Powerful Features for
+              <span className="text-orange-400"> Secure Identity Management</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Everything you need to manage and share your identities safely and efficiently
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800 hover:border-orange-500/50 transition-all group">
+                <div className="text-orange-400 mb-4 group-hover:scale-110 transition-transform">
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl font-semibold mb-4 group-hover:text-orange-400 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section id="use-cases" className="py-20 bg-gray-900/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Perfect For <span className="text-orange-400">Every Scenario</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              See how OneID simplifies identity management across different use cases
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {useCases.map((useCase, index) => (
+              <div key={index} className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 text-center hover:border-orange-500/50 transition-all">
+                <div className="inline-flex p-4 bg-orange-500/10 rounded-xl mb-4">
+                  <div className="text-orange-400">{useCase.icon}</div>
+                </div>
+                <h3 className="text-lg font-semibold mb-3">{useCase.title}</h3>
+                <p className="text-gray-400 text-sm">{useCase.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              How It <span className="text-orange-400">Works</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Get started in minutes with our simple setup process
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold">1</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Verify with BVN</h3>
+              <p className="text-gray-300">
+                Verify your identity using your BVN and full name securely
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold">2</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Add Your Identities</h3>
+              <p className="text-gray-300">
+                Link bank accounts and other identities to your OneID profile
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold">3</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Share & Manage</h3>
+              <p className="text-gray-300">
+                Share your 10-digit code or manage everything from one dashboard
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Security Section */}
+      <section className="py-20 bg-gray-900/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                Your Security is
+                <span className="text-orange-400"> Our Priority</span>
+              </h2>
+              <p className="text-xl text-gray-300 mb-8">
+                We use the same security standards as banks to protect your information. Your data is encrypted, verified, and always under your control.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {securityFeatures.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-2">
+                    <CheckCircle className="w-5 h-5 text-orange-400 flex-shrink-0" />
+                    <span className="text-gray-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-orange-500/10 rounded-lg">
+                    <Shield className="w-6 h-6 text-orange-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">BVN Verification</h3>
+                    <p className="text-gray-400 text-sm">We verify your identity through Nigeria's Bank Verification Number system</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-orange-500/10 rounded-lg">
+                    <Lock className="w-6 h-6 text-orange-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">End-to-End Encryption</h3>
+                    <p className="text-gray-400 text-sm">All data is encrypted in transit and at rest with bank-grade security</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-orange-500/10 rounded-lg">
+                    <Eye className="w-6 h-6 text-orange-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">You Control Visibility</h3>
+                    <p className="text-gray-400 text-sm">Toggle what information is visible to others at any time</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              What Our <span className="text-orange-400">Users Say</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800">
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-orange-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-6 italic text-sm">
+                  "{testimonial.content}"
+                </p>
+                <div>
+                  <div className="font-semibold">{testimonial.name}</div>
+                  <div className="text-orange-400 text-sm">{testimonial.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 bg-gray-900/30">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Frequently Asked <span className="text-orange-400">Questions</span>
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800">
+                <h3 className="text-xl font-semibold mb-3 text-orange-400">{faq.question}</h3>
+                <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-orange-900/20 to-orange-800/20">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            Ready to Consolidate Your{" "}
+            <span className="text-orange-400">Digital Identity?</span>
+          </h2>
+          <p className="text-xl text-gray-300 mb-8">
+            Join thousands of Nigerians who trust OneID for secure identity aggregation
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105">
+              Create Your OneID
+            </button>
+            <button className="border border-gray-600 hover:border-orange-400 px-8 py-4 rounded-lg font-semibold text-lg transition-all">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900/50 border-t border-gray-800 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                  <span className="text-xl font-bold text-white">1ID</span>
+                </div>
+                <span className="text-lg font-bold">OneID</span>
+              </div>
+              <p className="text-gray-400 text-sm">
+                Secure identity aggregation platform for Nigeria
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#features" className="hover:text-orange-400">Features</a></li>
+                <li><a href="#use-cases" className="hover:text-orange-400">Use Cases</a></li>
+                <li><a href="#" className="hover:text-orange-400">Security</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#about" className="hover:text-orange-400">About</a></li>
+                <li><a href="#" className="hover:text-orange-400">Blog</a></li>
+                <li><a href="#" className="hover:text-orange-400">Careers</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Support</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#faq" className="hover:text-orange-400">FAQ</a></li>
+                <li><a href="#" className="hover:text-orange-400">Contact</a></li>
+                <li><a href="mailto:support@oneid.com" className="hover:text-orange-400">Email Us</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+            <p>&copy; 2024 OneID. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
