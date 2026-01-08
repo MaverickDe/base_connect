@@ -15,12 +15,7 @@ export default function CoinbaseWalletConnect() {
   // const TERRACE_TOKEN_ADDRESS = '0xYourTerraceTokenAddress';
   const TERRACE_TOKEN_ADDRESS = '0xF5F53af4595BaB806E2522Ca7A8bbcB70a9b3DA8';
 
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/MaverickDe/base_connect.git
-git push -u origin main
+
   // 1. Initialize SDK
   const sdk = useMemo(() => {
     if (typeof window === 'undefined') return null;
