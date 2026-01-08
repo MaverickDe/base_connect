@@ -3,10 +3,10 @@ import { SERVERDOMAIN } from "./const";
 
 const nextConfig: NextConfig = {
 
- eslint: {
-    // ✅ Do not run ESLint on builds
-    ignoreDuringBuilds: true,
-  },
+//  eslint: {
+//     // ✅ Do not run ESLint on builds
+//     ignoreDuringBuilds: true,
+//   },
   /* config options here */
     async rewrites() {
     return [
