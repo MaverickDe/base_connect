@@ -14,10 +14,10 @@ import { usePayment } from "../../hooks";
 //   weight: ["400", "500", "600", "700"], // pick the weights you need
 //   variable: "--font-poppins", // optional: CSS variable
 // });
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={geistSans.className}
+        // className={geistSans.className}
       >
      
    {/* <RecoilRoot> */}

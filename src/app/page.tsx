@@ -13,14 +13,14 @@ export default function CoinbaseWalletConnect() {
 
   // Update this with your real Terrace token contract address
   // const TERRACE_TOKEN_ADDRESS = '0xYourTerraceTokenAddress';
-  const TERRACE_TOKEN_ADDRESS = '0xF5F53af4595BaB806E2522Ca7A8bbcB70a9b3DA8';
+  const TERRACE_TOKEN_ADDRESS = '0xe9a5c635c51002fa5f377f956a8ce58573d63d91';
 
 
   // 1. Initialize SDK
   const sdk = useMemo(() => {
     if (typeof window === 'undefined') return null;
     return createCoinbaseWalletSDK({
-      appName: 'Terrace App',
+      appName: 'Base App',
       appLogoUrl: 'https://example.com/logo.png',
       preference: { options: 'all' }, 
     });
@@ -55,7 +55,7 @@ export default function CoinbaseWalletConnect() {
         tokenContract.decimals()
       ]);
 let tbal = ethers.formatUnits(rawBalance, decimals)
-console.log("tbal",tbal)
+console.log("tbal",tbal,rawBalance,decimals,userAddress)
       setTerraceBalance(tbal);
     } catch (err) {
       console.error("Balance fetch error:", err);

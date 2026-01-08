@@ -19,3 +19,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+// pnpm add next@latest react@latest react-dom@latest
