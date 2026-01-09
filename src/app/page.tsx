@@ -1,21 +1,44 @@
+
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { createCoinbaseWalletSDK } from '@coinbase/wallet-sdk';
 
 export default function CoinbaseWalletConnect() {
   const [address, setAddress] = useState<string>('');
   const [bnbBalance, setBnbBalance] = useState<string>('0');
-  const [terraceBalance, setTerraceBalance] = useState<string>('0');
+  const [t22priceUsd, setT22PriceUsd] = useState<number>(0);
+  const [t22Balance, setT22Balance] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
 
   // Update this with your real Terrace token contract address
   // const TERRACE_TOKEN_ADDRESS = '0xYourTerraceTokenAddress';
-  const TERRACE_TOKEN_ADDRESS = '0xe9a5c635c51002fa5f377f956a8ce58573d63d91';
+  const TETHEREUM_TOKEN_ADDRESS = '0xe9a5c635c51002fa5f377f956a8ce58573d63d91';
 
+const fetchData = async (t22_price) => {
+  try {
+    // We ask Coinbase directly for the T99 to USD spot price
+    const response = await fetch('https://api.coinbase.com/v2/prices/T99-USD/spot');
+    const json = await response.json();
+    
+    // Coinbase returns: { data: { base: "T99", currency: "USD", amount: "0.2985" } }
+    const price = parseFloat(json.data.amount);
+    // console.log("Fetched T99 price from Coinbase:", price*67);
+    setT22PriceUsd(price*t22_price); // This will be ~0.30
+  } catch (error) {
+    console.error("Coinbase API failed, using fallback", error);
+    // setT22PriceUsd(0.30); 
+  }
+};
 
+useEffect(()=>{
+  if(t22Balance>0){
+
+    fetchData(t22Balance)
+  }
+},[t22Balance])
   // 1. Initialize SDK
   const sdk = useMemo(() => {
     if (typeof window === 'undefined') return null;
@@ -25,6 +48,8 @@ export default function CoinbaseWalletConnect() {
       preference: { options: 'all' }, 
     });
   }, []);
+
+
 
   // 2. Get the Provider
   const cbProvider = useMemo(() => {
@@ -42,7 +67,7 @@ export default function CoinbaseWalletConnect() {
 
       // Fetch Terrace Token Balance
       const tokenContract = new ethers.Contract(
-        TERRACE_TOKEN_ADDRESS,
+        TETHEREUM_TOKEN_ADDRESS,
         [
           'function balanceOf(address owner) view returns (uint256)',
           'function decimals() view returns (uint8)'
@@ -56,7 +81,7 @@ export default function CoinbaseWalletConnect() {
       ]);
 let tbal = ethers.formatUnits(rawBalance, decimals)
 console.log("tbal",tbal,rawBalance,decimals,userAddress)
-      setTerraceBalance(tbal);
+      setT22Balance(Number(tbal));
     } catch (err) {
       console.error("Balance fetch error:", err);
     }
@@ -115,7 +140,7 @@ console.log("tbal",tbal,rawBalance,decimals,userAddress)
     }
     setAddress('');
     setBnbBalance('0');
-    setTerraceBalance('0');
+    setT22Balance(0);
   };
 
   return (
@@ -145,8 +170,9 @@ console.log("tbal",tbal,rawBalance,decimals,userAddress)
               <p className="text-lg font-bold text-gray-800">{Number(bnbBalance).toFixed(4)}</p>
             </div>
             <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center">
-              <p className="text-[10px] text-gray-400 font-bold uppercase">Terrace</p>
-              <p className="text-lg font-bold text-[#0052FF]">{Number(terraceBalance).toFixed(2)}</p>
+              <p className="text-[10px] text-gray-400 font-bold uppercase">TETHEREUM</p>
+              <p className="text-lg font-bold text-[#0052FF]">{Number(t22Balance).toFixed(2)}</p>
+              <p className=" text-[#0052FF]">{Number(t22priceUsd).toFixed(2)} usd</p>
             </div>
           </div>
 
